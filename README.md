@@ -1,5 +1,10 @@
-# learning_R
+## learning_R
 A base R guy teaching R to new users so he can learn tidyverse
+
+
+## Week 1
+
+We can take our first steps with saghirb's [Getting Started in R](https://github.com/saghirb/Getting-Started-in-R).
 
 
 ## Resources
