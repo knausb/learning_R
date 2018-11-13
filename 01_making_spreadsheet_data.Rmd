@@ -1,0 +1,68 @@
+---
+title: "Example spreadsheet data"
+author: "Brian J. Knaus"
+date: "`r format(Sys.time(), '%Y, %B %d')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## An example spreadsheet
+
+In order to explore issues with using spreadsheet data we first need to manufacture an example.
+Here I use the `iris` dataset to manufacture an example.
+First we'll load the data set.
+
+```{r}
+data(iris)
+head(iris)
+class(iris)
+str(iris)
+```
+
+## Add bad practices
+
+
+To provide examples of bad practices we'll add them to the file.
+
+```{r}
+iris <- iris[,c(5, 1:4)]
+iris$Species <- as.character(iris$Species)
+iris$Species[10] <- "seto#sa" # Comment character
+iris$Species[20] <- "setosa " # Trailing white space
+iris$Species[30] <- "Setosa " # Mixed case
+```
+
+
+
+## Write to file
+
+In the RMarkdown here I have set `eval=FALSE` so we do not clobber any existing files.
+Set `eval=TRUE` or run the line manually if you would actually like to create the file.
+
+
+```{r, eval=FALSE}
+openxlsx::write.xlsx(iris, file = "iris_data.xlsx", sheetName = "iris")
+```
+
+
+We can also use a comma delimited file as follows.
+
+
+```{r, eval=FALSE}
+write.table(iris, "iris.csv", sep = ",", row.names = FALSE, quote = FALSE)
+```
+
+
+## Validate
+
+Now we can attempt to read the file in to validate our changes.
+
+
+```{r, eval=FALSE}
+iris <- readxl::read_excel("iris_data.xlsx")
+iris <- read.table("iris.csv", sep = ",")
+```
+
