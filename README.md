@@ -20,6 +20,7 @@ Typical issues include the following.
 * Use of coloring in spreadsheet that is not read into R
 * The comment character (frequently '#') is used in  a data cell
 * Dates are handled incorrectly
+* Mixing upper and lower case (e.g., Person vs. person)
 
 This mneans that most projects have a phase where spreadsheet data need quality control before it can be analysed.
 
