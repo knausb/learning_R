@@ -6,6 +6,9 @@ A base R guy teaching R to new users so he can learn tidyverse
 
 We can take our first steps with saghirb's [Getting Started in R](https://github.com/saghirb/Getting-Started-in-R).
 
+## Week 2
+
+Project organization and reading excel files with [readxl](https://readxl.tidyverse.org).
 
 ## Resources
 
