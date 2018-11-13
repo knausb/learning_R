@@ -12,6 +12,17 @@ Project organization and reading excel files with [readxl](https://readxl.tidyve
 
 ## Week 3
 
+Managing spreadsheets presents some chaallenges to data scientists.
+This article on [Data Organization in Spreadsheets](https://doi.org/10.1080/00031305.2017.1375989) may help with some of the issues with managing spreadsheets.
+Typical issues include the following.
+
+* Unintended white space (space, tabs, etc.) in cells
+* Use of coloring in spreadsheet that is not read into R
+* The comment character (frequently '#') is used in  a data cell
+* Dates are handled incorrectly
+
+This mneans that most projects have a phase where spreadsheet data need quality control before it can be analysed.
+
 Example spreadsheet data.
 
 Example GenAlEx data.
