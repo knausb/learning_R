@@ -10,6 +10,15 @@ We can take our first steps with saghirb's [Getting Started in R](https://github
 
 Project organization and reading excel files with [readxl](https://readxl.tidyverse.org).
 
+## Week 3
+
+Example spreadsheet data.
+
+Example GenAlEx data.
+
+Example FASTA data.
+
+
 ## Resources
 
 [R for Data Science](https://r4ds.had.co.nz/)    
