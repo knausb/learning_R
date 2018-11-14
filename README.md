@@ -39,5 +39,5 @@ Example FASTA data.
 [Daring fireball](https://daringfireball.net/projects/markdown/syntax) (Markdown)    
 [tidyverse](https://www.tidyverse.org/)    
 [An Introduction to Statistical and Data Sciences via R](https://moderndive.com/)    
-
+[Importing Data into R](http://www.ucd.ie/ecomodel/Resources/Sheet2a_data_import_WebVersion.html)    
 
