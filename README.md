@@ -40,4 +40,5 @@ Example FASTA data.
 [tidyverse](https://www.tidyverse.org/)    
 [An Introduction to Statistical and Data Sciences via R](https://moderndive.com/)    
 [Importing Data into R](http://www.ucd.ie/ecomodel/Resources/Sheet2a_data_import_WebVersion.html)    
+Why Jenny Bryan doesn't like the [first two lines of code](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/) from the previous link    
 
