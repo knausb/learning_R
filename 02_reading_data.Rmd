@@ -32,7 +32,7 @@ The function `read.table()` does not expect a header by default.
 It also does not expect comma delimitation and instead expects white space delimiting.
 If we set these parameters we can make another attempt to read the data in.
 
-```{r}
+```{r, eval=FALSE}
 myIris <- read.table("iris.csv", header = TRUE, sep = ",")
 ```
 
@@ -47,7 +47,7 @@ This creates a situation where this row has fewer elements than the previous lin
 If we fix this in a text editor or a spreadsheet we should now be able to read the data in.
 
 
-```{r}
+```{r, eval=FALSE}
 myIris <- read.table("iris.csv", header = TRUE, sep = ",")
 head(myIris)
 str(myIris)
@@ -61,6 +61,14 @@ When R reads the data in it tries to decide what type of data it is so it can us
 Its actually pretty good at this.
 But sometimes we need to help it.
 We can change the character `Sepal.Length` to a factor.
+
+
+```{r, echo=FALSE}
+# This hidden chunck provides real data.
+data("iris")
+myIris <- iris
+rm(iris)
+```
 
 
 ```{r}
