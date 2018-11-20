@@ -1,0 +1,90 @@
+---
+title: "Reading data"
+author: "Brian J. Knaus"
+date: "11/20/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Iris *.csv
+
+I've created a file in this repository as an example that has known issues in it.
+We use this as an example of how to troubleshoot problematic files.
+We'll use `read.table()` to try to read it in.
+
+```{r}
+myIris <- read.table("iris.csv")
+```
+
+Or first attempt appears to be successful.
+Let's explore what we read in to try and validate this.
+Use the function `head()` to see what we read in.
+
+```{r}
+head(myIris)
+str(myIris)
+```
+
+The function `read.table()` does not expect a header by default.
+It also does not expect comma delimitation and instead expects white space delimiting.
+If we set these parameters we can make another attempt to read the data in.
+
+```{r}
+myIris <- read.table("iris.csv", header = TRUE, sep = ",")
+```
+
+
+This time we should throw an error.
+The error complains about line 10.
+If we view the file in the RSudio we see the is a pound sign (#) on line 11.
+R complains about line 10 because it is now interpreting the header as the first line.
+The pound sign is interpretated as a comment character.
+This means that R ignores everything on the row after the pound sign.
+This creates a situation where this row has fewer elements than the previous lines and thus, we get an error.
+If we fix this in a text editor or a spreadsheet we should now be able to read the data in.
+
+
+```{r}
+myIris <- read.table("iris.csv", header = TRUE, sep = ",")
+head(myIris)
+str(myIris)
+```
+
+
+## Changing class
+
+
+When R reads the data in it tries to decide what type of data it is so it can use an appropriate container.
+Its actually pretty good at this.
+But sometimes we need to help it.
+We can change the character `Sepal.Length` to a factor.
+
+
+```{r}
+myIris$Sepal.Length <- as.factor(myIris$Sepal.Length)
+str(myIris)
+```
+
+
+We see that we now have a factor.
+Converting this factor back presents a problem.
+
+
+```{r}
+as.numeric(myIris$Sepal.Length)
+```
+
+
+Instead of getting our numerics back we get a bunch of integers.
+This is because R keeps track of the levels by numbering them (one through the number of levels we have).
+This is why we get these integers.
+In order to get our numbers back we need to first convert it to a character.
+
+```{r}
+myIris$Sepal.Length <- as.numeric(as.character(myIris$Sepal.Length))
+str(myIris)
+```
+
