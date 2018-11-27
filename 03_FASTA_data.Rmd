@@ -1,0 +1,86 @@
+---
+title: "FASTA data"
+author: "Brian J. Knaus"
+date: "11/27/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Read FASTA data in
+
+DNA sequence information often come in the FASTA format.
+We can use several functions in the R package `ape` to read this data into R.
+
+```{r}
+library(ape)
+myDna <- read.dna("Phytopthora-ID-ITS.fasta", format = "fasta")
+myDna
+myDna[1]
+print(myDna)
+```
+
+Note that our `DNAbin` object is storing the data as a `list`.
+This is because the data is unaligned and different sequences are different lengths.
+
+
+## Making system calls
+
+
+When we anlyze data we typically want it to be aligned.
+I do not know of any tool within R that will align sequences.
+This is probably because it is computationally intensive.
+But we can make system calls from within R to other command line tools.
+Date is a simple example.
+
+
+```{r}
+system("date")
+```
+
+Compare this with the output you get from the terminal.
+If you're using Windows, I'm not sure what this will do.
+
+We can use the `maffft` aligner to align our sequences.
+
+```{r, eval=FALSE}
+system("mafft PhytoID.fa > PhytoID2.fa")
+```
+
+
+Now we can read our FASTA data into R as we did previously.
+
+
+```{r}
+myDna <- read.dna("Phytopthora-ID-ITS_aligned.fasta", format = "fasta")
+myDna
+```
+
+
+Now our data is stored as a matrix.
+The aligner creates insertions in the sequences so that they are all the same length.
+Now we can manipulate the data in a manner similar to how we work with matrices.
+
+
+```{r}
+myDna[1:2, 1:10]
+myDna[1,]
+```
+
+
+## A quick analysis
+
+
+Now that we have a matrix we can perform a quick analysis.
+First we'll create a distance matrix and use that to create a neighbor-joining tree.
+
+
+```{r}
+myDist <- dist.dna(myDna)
+myNj <- nj(myDist)
+plot(myNj)
+```
+
+
