@@ -1,0 +1,57 @@
+---
+title: "SSR data"
+author: "Brian J. Knaus"
+date: "12/11/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+We'll use data from Zhian and Nik's [Sudden_Oak_Death_in_Oregon_Forests](https://github.com/grunwaldlab/Sudden_Oak_Death_in_Oregon_Forests) Project.
+
+```{r}
+library(poppr)
+ssrs <- read.table("Pramorum_Curry_County_2001_2014.csv", 
+                   header = TRUE, sep = ",", skip = 2)
+head(ssrs)
+```
+
+
+```{r}
+ssrs2 <- data.frame(matrix(nrow = nrow(ssrs), ncol = 5))
+row.names(ssrs2) <- ssrs$Ind
+colnames(ssrs2) <- colnames(ssrs)[c(3,5,7,9,11)]
+ssrs2[,1] <- paste(ssrs[,3], ssrs[,4], sep = "/")
+ssrs2[,2] <- paste(ssrs[,5], ssrs[,6], sep = "/")
+ssrs2[,3] <- paste(ssrs[,7], ssrs[,8], sep = "/")
+ssrs2[,4] <- paste(ssrs[,9], ssrs[,10], sep = "/")
+ssrs2[,5] <- paste(ssrs[,11], ssrs[,12], sep = "/")
+head(ssrs2)
+```
+
+
+Now we can convert this data from a `data.frame` to a `genind` object.
+
+```{r}
+myGind <- df2genind(ssrs2, sep = "/")
+strata(myGind) <- data.frame(pop = as.character(ssrs$Pop))
+names(myGind)
+myGind
+```
+
+
+```{r}
+myDist <- dist(myGind)
+library(ape)
+myNj <- nj(myDist)
+```
+
+
+```{r}
+plot(myNj)
+
+```
+
