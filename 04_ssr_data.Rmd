@@ -52,6 +52,23 @@ myNj <- nj(myDist)
 
 ```{r}
 plot(myNj)
-
 ```
 
+
+## Using read.genalex
+
+
+```{r}
+myData <- read.genalex("Pramorum_Curry_County_2001_2014.csv", 
+                       ploidy = 2, geo = TRUE)
+myData
+
+myDist <- dist(myData)
+#library(ape)
+myNj <- nj(myDist)
+```
+
+
+```{r}
+plot(myNj)
+```
